@@ -1,63 +1,27 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import HandleLogin from "./loginHandler";
 
+// eslint-disable-next-line react/prop-types
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
+  const [username, setUsernameValue] = useState("");
+  const [password, setPasswordValue] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      const loginResponse = await fetch(`http://localhost:3000/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (loginResponse.ok) {
-        const loginData = await loginResponse.json();
-        console.log("Login successful", loginData);
-
-        const sendApprovedResponse = await fetch(
-          `http://localhost:3000/approved/${id}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username }),
-          }
-        );
-
-        if (sendApprovedResponse.ok) {
-          const approvalData = await sendApprovedResponse.json();
-          console.log("Document Approved", approvalData);
-          if (approvalData.message === "Document already approved") {
-            navigate("/alreadyapprove");
-          } else {
-            console.log(approvalData.message);
-            navigate(`/approved/${id}`);
-          }
-        } else {
-          const errorData = await sendApprovedResponse.json();
-          console.error("Document approval error:", errorData.message);
-          navigate("/notfound");
-        }
-      } else {
-        console.error(
-          "Login failed:",
-          loginResponse.status,
-          loginResponse.statusText
-        );
+  function LoginHandler() {
+    HandleLogin(username, password, id).then((e) => {
+      console.log(e);
+      // if (e !== undefined) {
+      //   navigate(`/approved/${e}`);
+      // }
+      if (e !== undefined) {
+        navigate(`/alreadyapprove/${e}`);
       }
-    } catch (error) {
-      console.error("Request error:", error.message);
-    }
-  };
+    });
+  }
 
   const inputStyle = {
     display: "flex",
@@ -91,7 +55,7 @@ function Login() {
         placeholder="Username"
         type="text"
         value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(e) => setUsernameValue(e.target.value)}
       />
 
       <br />
@@ -101,7 +65,7 @@ function Login() {
         placeholder="Password"
         type="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => setPasswordValue(e.target.value)}
       />
 
       <br />
@@ -112,17 +76,17 @@ function Login() {
           alignItems: "center",
           width: "105%",
           height: "30px",
-          // borderColor: "#F56905",
           padding: "10px",
           borderRadius: "10px",
           backgroundColor: "#00A390",
           color: "white",
         }}
-        onClick={handleLogin}
+        onClick={LoginHandler}
       >
         Login
       </button>
     </div>
   );
 }
+
 export default Login;

@@ -34,7 +34,7 @@ function Approved() {
   }, [id]);
 
   console.log(documentData);
-  return null; // You can replace this with your JSX rendering logic
+  return <h1>Hall</h1>; // You can replace this with your JSX rendering logic
 }
 
 export default Approved;

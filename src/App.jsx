@@ -1,12 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Login from "./component/login/login";
 import Approved from "./component/approved/approved";
+import AlreadyApprove from "./component/approved/alreadyapprove";
 
 function NotFound() {
   return <h1>Document not Found</h1>;
-}
-function AlreadyApprove() {
-  return <h1>Document already Approved</h1>;
 }
 
 function App() {
@@ -14,10 +13,11 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Login />} />
           <Route path="/login/:id" element={<Login />} />
           <Route path="/approved/:id" element={<Approved />} />
           <Route path="/notfound" element={<NotFound />} />
-          <Route path="/alreadyapprove" element={<AlreadyApprove />} />
+          <Route path="/alreadyapprove/:id" element={<AlreadyApprove />} />
         </Routes>
       </BrowserRouter>
     </>
