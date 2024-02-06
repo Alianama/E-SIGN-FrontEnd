@@ -27,7 +27,7 @@ function Approve() {
       setdocumentSource(e.parseddata.document_source);
       setApprovedDate(e.parseddata.date);
     });
-  }, []);
+  }, [id]);
 
   return (
     <main style={mainStyle}>
