@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./component/login/login";
 import Approved from "./component/approved/approvedSuccess/approved";
 import AlreadyApprove from "./component/approved/alreadyApproved/alreadyapprove";
+import Success from "./component/approved/approvedSuccess/success/success";
 
 function NotFound() {
   return <h1>Document not Found</h1>;
@@ -18,6 +19,7 @@ function App() {
           <Route path="/approved/:id" element={<Approved />} />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/alreadyapprove/:id" element={<AlreadyApprove />} />
+          <Route path="/success/:id" element={<Success />} />
         </Routes>
       </BrowserRouter>
     </>

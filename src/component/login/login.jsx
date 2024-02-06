@@ -18,7 +18,7 @@ function Login() {
       if (e.message === "Document Already Approved") {
         navigate(`/alreadyapprove/${e.idAlreadyApprove}`);
       } else {
-        navigate(`/approved/${e.idApproveSuccess}`);
+        navigate(`/success/${e.idApproveSuccess}`);
       }
     });
   }
