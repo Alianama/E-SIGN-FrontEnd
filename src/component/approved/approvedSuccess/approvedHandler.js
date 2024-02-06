@@ -1,4 +1,4 @@
-const alreadyApproveHandler = async (id) => {
+const ApproveHandler = async (id) => {
   try {
     const response = await fetch(`http://localhost:3000/getapprove/${id}`, {
       method: "GET",
@@ -8,13 +8,12 @@ const alreadyApproveHandler = async (id) => {
     });
     if (response.ok) {
       const data = await response.json();
-      // console.log(await response.json());
 
-      return data.parseddata;
+      return data;
     }
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
   }
 };
 
-export default alreadyApproveHandler;
+export default ApproveHandler;

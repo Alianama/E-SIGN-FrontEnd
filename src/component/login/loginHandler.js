@@ -25,11 +25,14 @@ const HandleLogin = async (username, password, id) => {
 
       if (sendApprovedResponse.ok) {
         const approvalData = await sendApprovedResponse.json();
-        const idFromCheckResults = approvalData.checkresults[0].id;
+        const idAlreadyApprove = approvalData.checkresults[0].id;
+        const idApproveSuccess = approvalData.checkresults[0].id;
+        console.log(approvalData);
+
         if (approvalData.message === "Document Already Approved") {
-          return idFromCheckResults;
+          return { message: "Document Already Approved", idAlreadyApprove };
         } else {
-          return "Approve Success", idFromCheckResults;
+          return { message: "Approved Succesful", idApproveSuccess };
         }
       } else {
         const errorData = await sendApprovedResponse.json();

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import HandleLogin from "./loginHandler";
+import { inputStyle, loginFormStyle, buttonStyle } from "./loginStyle";
 
 // eslint-disable-next-line react/prop-types
 function Login() {
@@ -14,37 +15,13 @@ function Login() {
   function LoginHandler() {
     HandleLogin(username, password, id).then((e) => {
       console.log(e);
-      // if (e !== undefined) {
-      //   navigate(`/approved/${e}`);
-      // }
-      if (e !== undefined) {
-        navigate(`/alreadyapprove/${e}`);
+      if (e.message === "Document Already Approved") {
+        navigate(`/alreadyapprove/${e.idAlreadyApprove}`);
+      } else {
+        navigate(`/approved/${e.idApproveSuccess}`);
       }
     });
   }
-
-  const inputStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    height: "20px",
-    border: "1px solid",
-    borderColor: "#F56905",
-    padding: "5px",
-    borderRadius: "10px",
-  };
-
-  const loginFormStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    backgroundColor: "white",
-    padding: "30px",
-    color: "black",
-    borderRadius: "20px",
-  };
 
   return (
     <div style={loginFormStyle}>
@@ -69,20 +46,7 @@ function Login() {
       />
 
       <br />
-      <button
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "105%",
-          height: "30px",
-          padding: "10px",
-          borderRadius: "10px",
-          backgroundColor: "#00A390",
-          color: "white",
-        }}
-        onClick={LoginHandler}
-      >
+      <button style={buttonStyle} onClick={LoginHandler}>
         Login
       </button>
     </div>

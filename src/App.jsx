@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Login from "./component/login/login";
-import Approved from "./component/approved/approved";
-import AlreadyApprove from "./component/approved/alreadyapprove";
+import Approved from "./component/approved/approvedSuccess/approved";
+import AlreadyApprove from "./component/approved/alreadyApproved/alreadyapprove";
 
 function NotFound() {
   return <h1>Document not Found</h1>;
