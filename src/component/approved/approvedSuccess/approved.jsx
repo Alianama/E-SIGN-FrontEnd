@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ApprovedHandler from "./approvedHandler";
 import DocIcon from "../../../assets/icon/Doc.svg";
+import dayjs from "dayjs";
 import {
   mainStyle,
   labelStyle,
@@ -56,7 +57,9 @@ function Approve() {
             <tr>
               <td style={labelStyle}>Approved Date </td>
               <td style={labelStyle}>: </td>
-              <td style={dataStyle}>{ApprovedDate}</td>
+              <td style={dataStyle}>
+                {dayjs(ApprovedDate).format("DD-MMMM-YYYY")}
+              </td>
             </tr>
           </tbody>
         </table>
