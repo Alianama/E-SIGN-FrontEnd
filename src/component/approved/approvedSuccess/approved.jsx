@@ -22,10 +22,10 @@ function Approve() {
 
   useEffect(() => {
     ApprovedHandler(id).then((e) => {
-      setUsername(e.parseddata.username);
-      setDocumentName(e.parseddata.document_name);
-      setdocumentSource(e.parseddata.document_source);
-      setApprovedDate(e.parseddata.date);
+      setUsername(e.data[0].name);
+      setDocumentName(e.data[0].document_name);
+      setdocumentSource(e.data[0].document_source);
+      setApprovedDate(e.data[0].date);
     });
   }, [id]);
 
