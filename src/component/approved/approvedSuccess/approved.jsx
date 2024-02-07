@@ -3,8 +3,14 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ApprovedHandler from "./approvedHandler";
 import DocIcon from "../../../assets/icon/Doc.svg";
+import HomeIcon from "../../../assets/icon/Home.svg";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
+
 import {
+  HomeIconStyle,
+  titleWrapperStyle,
+  HomeButtonStyle,
   mainStyle,
   labelStyle,
   dataStyle,
@@ -14,6 +20,7 @@ import {
 } from "./approvedStyle";
 
 function Approve() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [documentName, setDocumentName] = useState("");
   const [documentSource, setdocumentSource] = useState("");
@@ -30,39 +37,49 @@ function Approve() {
     });
   }, [id]);
 
+  function HomeHandler() {
+    navigate("/home");
+  }
+
   return (
     <main style={mainStyle}>
-      <div>
-        <h1>Approved Successful</h1>
+      <div style={titleWrapperStyle}>
+        <h2>Approved Successful</h2>
       </div>
+      <button style={HomeButtonStyle} onClick={HomeHandler}>
+        <img src={HomeIcon} alt="Home" style={HomeIconStyle} />
+        Home
+      </button>
       <div style={iconContainerStyle}>
         <img src={DocIcon} style={iconStyle} alt="Document Icon" />
-        <table style={tableStyle}>
-          <tbody>
-            <tr>
-              <td style={labelStyle}>Approved By </td>
-              <td style={labelStyle}>: </td>
-              <td style={dataStyle}>{username}</td>
-            </tr>
-            <tr>
-              <td style={labelStyle}>Document Name </td>
-              <td style={labelStyle}>: </td>
-              <td style={dataStyle}>{documentName}</td>
-            </tr>
-            <tr>
-              <td style={labelStyle}>Document Source </td>
-              <td style={labelStyle}>: </td>
-              <td style={dataStyle}>{documentSource}</td>
-            </tr>
-            <tr>
-              <td style={labelStyle}>Approved Date </td>
-              <td style={labelStyle}>: </td>
-              <td style={dataStyle}>
-                {dayjs(ApprovedDate).format("DD-MMMM-YYYY")}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="tabelContainer">
+          <table style={tableStyle}>
+            <tbody>
+              <tr>
+                <td style={labelStyle}>Approved By </td>
+                <td style={labelStyle}>: </td>
+                <td style={dataStyle}>{username}</td>
+              </tr>
+              <tr>
+                <td style={labelStyle}>Document Name </td>
+                <td style={labelStyle}>: </td>
+                <td style={dataStyle}>{documentName}</td>
+              </tr>
+              <tr>
+                <td style={labelStyle}>Document Source </td>
+                <td style={labelStyle}>: </td>
+                <td style={dataStyle}>{documentSource}</td>
+              </tr>
+              <tr>
+                <td style={labelStyle}>Approved Date </td>
+                <td style={labelStyle}>: </td>
+                <td style={dataStyle}>
+                  {dayjs(ApprovedDate).format("DD-MMMM-YYYY")}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </main>
   );

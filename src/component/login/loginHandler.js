@@ -27,7 +27,9 @@ const HandleLogin = async (username, password, id) => {
         const approvalData = await sendApprovedResponse.json();
         const idAlreadyApprove = approvalData.checkresults[0].id;
         const idApproveSuccess = approvalData.checkresults[0].id;
-        console.log(approvalData);
+
+        const STORAGEKEY = "KEY";
+        sessionStorage.setItem(STORAGEKEY, username);
 
         if (approvalData.message === "Document Already Approved") {
           return { message: "Document Already Approved", idAlreadyApprove };

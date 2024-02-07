@@ -58,6 +58,7 @@
   background-color: #de8e18;
   font-family: "Poppins", sans-serif;
   transition: 0.3s ease-in-out;
+  cursor: pointer;
 }
 .button:hover {
   transform: scale(1.1);
