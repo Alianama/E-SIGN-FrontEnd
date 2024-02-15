@@ -21,7 +21,7 @@ function App() {
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/alreadyapprove/:id" element={<AlreadyApprove />} />
           <Route path="/success/:id" element={<Success />} />
-          <Route path="/home" element={<ShowAllApproved />} />
+          <Route path="/home/:username" element={<ShowAllApproved />} />
         </Routes>
       </BrowserRouter>
     </>

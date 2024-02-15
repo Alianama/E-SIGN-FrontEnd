@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import HandleLogin from "./loginHandler";
 import { inputStyle, loginFormStyle, buttonStyle } from "./loginStyle";
 
@@ -14,9 +13,13 @@ function Login() {
 
   function LoginHandler() {
     HandleLogin(username, password, id).then((e) => {
-      console.log(e);
+      console.log(e.message);
+      const STORAGEKEY = "username";
+      sessionStorage.setItem(STORAGEKEY, username);
       if (e.message === "Document Already Approved") {
         navigate(`/alreadyapprove/${e.idAlreadyApprove}`);
+      } else if (e.message === "Document Not Found") {
+        navigate(`/home/${username}`);
       } else {
         navigate(`/success/${e.idApproveSuccess}`);
       }

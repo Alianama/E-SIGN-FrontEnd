@@ -38,13 +38,13 @@ function Approve() {
   }, [id]);
 
   function HomeHandler() {
-    navigate("/home");
+    navigate(`/home/${username}`);
   }
 
   return (
     <main style={mainStyle}>
       <div style={titleWrapperStyle}>
-        <h2>Approved Successful</h2>
+        <h2>Already Approved</h2>
       </div>
       <button style={HomeButtonStyle} onClick={HomeHandler}>
         <img src={HomeIcon} alt="Home" style={HomeIconStyle} />

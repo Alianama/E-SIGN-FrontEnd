@@ -5,14 +5,18 @@ const getAllApprovedhandler = async function () {
 
   try {
     const response = await fetch(`http://localhost:3000/getallapproved`, {
-      method: "GET",
-      headers: {},
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ username }),
     });
 
     if (response.ok) {
       const data = await response.json();
-      return data;
+      const dataraw = data.data;
+      console.log(dataraw);
+      return dataraw;
     } else {
       const errorData = await response.json();
       console.error("Error message:", errorData.message);

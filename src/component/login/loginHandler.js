@@ -28,9 +28,6 @@ const HandleLogin = async (username, password, id) => {
         const idAlreadyApprove = approvalData.checkresults[0].id;
         const idApproveSuccess = approvalData.checkresults[0].id;
 
-        const STORAGEKEY = "KEY";
-        sessionStorage.setItem(STORAGEKEY, username);
-
         if (approvalData.message === "Document Already Approved") {
           return { message: "Document Already Approved", idAlreadyApprove };
         } else {
@@ -39,7 +36,7 @@ const HandleLogin = async (username, password, id) => {
       } else {
         const errorData = await sendApprovedResponse.json();
         console.error("Document approval error:", errorData.message);
-        return "Document Not Found";
+        return { message: "Document Not Found" };
       }
     } else {
       console.error(

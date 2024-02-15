@@ -38,7 +38,7 @@ function Approve() {
   }, [id]);
 
   function HomeHandler() {
-    navigate("/home");
+    navigate(`/home/${username}`);
   }
 
   return (
